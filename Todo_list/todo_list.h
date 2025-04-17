@@ -124,6 +124,23 @@ class ToDoList{
             }
 
        }
+       // Function to edit a task in the list
+        /*Procedure to implement this function
+        1. Check if the input index is valid, if not, throw an exception
+        2. Input new task name, category.
+        */
+       void editTask(int index, const string& newName, const string& newCategory){
+        if(index < 0 || index >= tasks.size()){
+            throw runtime_error("Invalid task index.");// If the index is invalid, throw runtime_error
+        }
+        tasks[index]->set_name(newName); // Set the new name for the task
+        tasks[index]->set_category(newCategory); // Set the new category for the task
+       }
+
+
+
+
+
        // Function to delee a task from the list
         /*Procedure to implement this function
         1. Check if the input index is valid, if not, throw an exception

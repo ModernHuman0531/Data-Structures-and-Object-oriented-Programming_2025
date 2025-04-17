@@ -139,6 +139,7 @@ class ImportantTask : public Basic_task{
 2. Recurring rask is inherited from the normal task, but have additiona; properoties 
  like the interval ofthe next task, and the date of the next task
 3. The output format is [Recurring (every ...)]name|category|description|due date|is completed|next occurrence
+4. In recurring task, we don't need to set the due date, because the due date is the next occurrence
 */
 class RecurringTask : public Normal_task{
     private:
@@ -146,7 +147,7 @@ class RecurringTask : public Normal_task{
         tm* nextOccurance; // Date of the next occurrence
     public:
         // Constructor, we need to allocate the memory for the pointers
-        RecurringTask(const string& name, const string& category, const string& description = "", const tm& dueDate = tm(), int recurrenceDays = 1, const tm& startDate):Normal_task(name, category, description, dueDate), recurrenceDays(new int(recurrenceDays)), nextOccurance(new tm(startDate)) {}
+        RecurringTask(const string& name, const string& category, const string& description = "", const tm& startDate, int recurrenceDays = 1) :Normal_task(name, category, description, startDate), recurrenceDays(new int(recurrenceDays)), nextOccurance(new tm(startDate)) {}
         // Destructor, we need to free the memory allocated for the pointers
         ~RecurringTask(){
             delete recurrenceDays;
