@@ -99,5 +99,77 @@ class ToDoList{
                 cout << "No tasks found matching the criteria." << endl;
             }
         }
+        // Function to mark a task as completed
+        /*Procedure to implement this function
+        1. Check if the input index is valid, if not, throw an exception
+        2. If the input index is valid, change the  status of the task tocompleted and put it into the completed task list
+        3. For the recurring 
+            a. Keep the task in the list
+            b. Automatically calculate the next happening date
+            c. Reset the status of the task to not completed
+        <tip> b and c we can do this by using the function in the recurring task class called markNextOccurance
+        */
+       void markTaskCompleted(int index){
+            if(index < 0 || index >= tasks.size()){
+                throw runtime_error("Invalid task index.");// After throw, it will stop executing this function
+            }
+            tasks[index]->set_completed(true); // Set the task as completed
+            completedTasks.push_back(tasks[index]); // Add the task to the completed tasks list
+
+            if(tasks[index]->isRecurring()){ //If the tasks we have completed is recurring task
+                tasks[index]->markNectOccurance(); // Mark the next occurrence of the task
+            }
+            else{
+                tasks.erase(tasks.begin()+index); // Remove the task from the list
+            }
+
+       }
+       // Function to delee a task from the list
+        /*Procedure to implement this function
+        1. Check if the input index is valid, if not, throw an exception
+        2. If the input index is valid, delete the task from the list and put it into the deleted task list
+        */
+       void deleteTask(int index){
+        if(index < 0 || index >= tasks.size()){// If the index is invalid
+            throw runtime_error("Invalid task index.");// Throw runtime_error
+        }
+        // Push the tak into deletedTasks
+        deletedTasks.push_back(tasks[index]); // Add the task to the deleted tasks list
+        // Remove the task from tasks
+        tasks.erase(tasks.begin()+index); // Remove the task from the list
+       }
+
+       // Function to undo the last delete operation
+       /* Procedure to implement this function
+       1. If the deletedTasks isn't emptym pop out the last task from the deletedTasks..
+       2. Put the pop_out task into the tasks list.
+       */
+      void undoDelete(){
+        if(!deletedTasks.empty()){
+            tasks.push_back(deletedTasks.back()); // Add the last deleted task back to the tasks list
+            deletedTasks.pop_back(); // Remove the last deleted task from the deleted tasks list
+        }
+      }
+
+      // Function to achieve the task in vector
+      /*Reason why we don't just use tasks[index] are following
+      1. More safety, we can check if the index is valid or not at the beginning
+      2. Easier to manipualte multiple tasks, we can use the same function to achieve multiple tasks
+      */ 
+     Basic_task* getTask(int index) const{
+        if(index < 0 || index >= tasks.size()){
+            throw runtime_error("Invalid task index.");// If the index is invalid, throw runtime_error
+        }
+        else{
+            return tasks[index]; // Return the task at the given index
+        }
+     }
+    // Function to indicate the number of tasks in the list
+    // The reason we use size_t as return type is
+    // 1. size_t is an unsigned integer type, which means it can only store positive values
+    // 2. The return type of vector.size() is size_t, so we can use size_t as the return type
+    size_t getTaskCount() const{
+        return tasks.size(); // Return the number of tasks in the list
+    }
 };
 #endif TODO_LIST_H
