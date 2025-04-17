@@ -168,5 +168,20 @@ void editTask(ToDoList& todolist){
         return;
     }
 
-    string newName, newCategory, newDescription;
+    string newName, newCategory;
+    cout << "Enter new task name: ";
+    cin.ignore();
+    getline(cin, newName);
+
+    cout << "Enter new category: ";
+    cin.ignore();
+    getline(cin, newCategory);
+
+    try{
+        todolist.editTask(index-1, newName, newCategory);
+        cout << "Task edited successfully!" << endl;
+    }
+    catch(const exception& e){
+        cout << "Error: " << e.what() << endl;
+    }
 }
