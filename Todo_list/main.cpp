@@ -185,3 +185,85 @@ void editTask(ToDoList& todolist){
         cout << "Error: " << e.what() << endl;
     }
 }
+void deleteTask(ToDoList& todolist){
+    if(todolist.getTaskCount() == 0){
+        cout << endl << "No tasks available to delete." << endl;
+    }
+    todolist.viewTasks();
+    cout << "Enter task number to delete: ";
+    int index;
+    cin >> index;
+
+    if(index < 1 || index > todolist.getTaskCount()){
+        cout << "Invalid task number." << endl;
+        return;
+    }
+    try{
+        todolist.deleteTask(index-1);
+        cout << "Task deleted successfully." << endl;
+    }
+    catch(const exception &e){
+        cout << "Error: " << e.what() << endl;
+    }
+}
+
+void markTaskCompleted(ToDoList& todolist){
+    if(todolist.getTaskCount() == 0){
+        cout << endl << "No tasks available to mark as completed." << endl;
+        return ;
+    }
+    todolist.viewTasks();
+    cout << "Enter task number to mark as completed: ";
+    int index;
+    cin >> index;
+
+    if(index < 1 || index > todolist.getTaskCount()){
+        cout << "Invalid task number." << endl;
+    }
+    try{
+        todolist.markTaskCompleted(index-1);
+        cout << "Task marked completed" << endl;
+    }
+    catch(const exception& e){
+        cout << "Error: " << e.what() << endl;
+    }
+}
+
+
+int main(){
+    ToDoList todolist;
+    int choice;
+
+    do{
+        displayMenu();
+        cin >> choice;
+
+        switch(choice){
+            case 1:
+                addTask(todolist);
+                break;
+            case 2:
+                viewTasks(todolist);
+                break;
+            case 3:
+                editTask(todolist);
+                break;
+            case 4:
+                deleteTask(todolist);
+                break;
+            case 5:
+                markTaskCompleted(todolist);
+                break;
+            case 6:
+                todolist.undoDelete();
+                cout << "Last deleted task restored." << endl;
+                break;
+            case 7:
+                cout << "Exiting the program." << endl;
+                break;
+            default:
+                cout << "Invalid choice. Please try again." << endl;
+        }
+    } while(choice != 7);
+    return 0;
+}
