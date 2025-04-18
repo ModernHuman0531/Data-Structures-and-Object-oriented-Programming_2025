@@ -37,7 +37,7 @@ void addTask(ToDoList& todolist){
     string name, category, desciription;
     int TaskType, priority, recurrenceDays;
     cout << endl << "---Add New Task---" << endl;
-    cout << "Enter task name: ";\
+    cout << "Enter task name: ";
     cin.ignore();// Ignore the newline character('\n') left in the buffer
     getline(cin, name);// Read the whole line until meet '\n'
 
@@ -217,6 +217,7 @@ void markTaskCompleted(ToDoList& todolist){
 
     if(index < 1 || index > todolist.getTaskCount()){
         cout << "Invalid task number." << endl;
+        return;
     }
     try{
         todolist.markTaskCompleted(index-1);
@@ -254,7 +255,7 @@ int main(){
                 break;
             case 6:
                 todolist.undoDelete();
-                cout << "Last deleted task restored." << endl;
+                cout << "Last deleted undo." << endl;
                 break;
             case 7:
                 cout << "Exiting the program." << endl;
