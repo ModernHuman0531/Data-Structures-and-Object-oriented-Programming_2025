@@ -85,7 +85,7 @@ class Normal_task : public Basic_task{
                 */
                 cout << "| Due: " << (dueDate->tm_mon+1) << "/" << dueDate->tm_mday << "/" << (dueDate->tm_year + 1900);
             }
-            cout << "| Completed: " << (is_completed() ? "Completed" : "Pending") << endl;
+            cout << "| Status: " << (is_completed() ? "Completed" : "Pending") << endl;
         }
 
 };
@@ -129,7 +129,7 @@ class ImportantTask : public Basic_task{
             if(!get_description().empty()){// If the description is not empty, display it
                 cout << "| Description: " << get_description();
             }
-            cout << "| Completed: " << (is_completed() ? "Completed" : "Pending") << endl;
+            cout << "| Status: " << (is_completed() ? "Completed" : "Pending") << endl;
         }
 };
 
@@ -138,7 +138,7 @@ class ImportantTask : public Basic_task{
  every week, every month, we can define the interval by the user
 2. Recurring rask is inherited from the normal task, but have additiona; properoties 
  like the interval ofthe next task, and the date of the next task
-3. The output format is [Recurring (every ...)]name|category|description|due date|is completed|next occurrence
+3. The output format is [Recurring (every ...)]name|category|description|due date|is completed
 4. In recurring task, we don't need to set the due date, because the due date is the next occurrence
 */
 class RecurringTask : public Normal_task{
@@ -171,11 +171,21 @@ class RecurringTask : public Normal_task{
             // Have to reset the completed to false, because if we finish the task before the next occurrence, the completed is true and the next occurrence is also inherited to be true
             set_completed(false);
         }
-        void display(){
-            cout << "[Recurring (every " << getRecurranceDays() << "days)]";
-            Normal_task::display();
-            cout << "| Next Occurance: " << (nextOccurance->tm_mon+1) << "/" << (nextOccurance->tm_mday) <<"/" << (nextOccurance->tm_year+1900) << endl;
+        void display() const override {
+            cout << "[RECURRING (every " << getRecurranceDays() << " days)] " << get_name()
+                << " | Category: " << get_category();
+
+            if (!get_descripition().empty()) {
+                cout << " | Description: " << get_descripition();
+            }
+
+            if (nextOccurance->tm_year > 0) {
+                cout << " | Due: " << (nextOccurance->tm_mon + 1) << "/" << nextOccurance->tm_mday << "/" << (nextOccurance->tm_year + 1900);
+            }
+
+            cout << " | Status: " << (is_completed() ? "Completed" : "Pending") << endl;
         }
+
 };
 
 #endif

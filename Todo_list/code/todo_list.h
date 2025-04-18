@@ -83,10 +83,10 @@ class ToDoList{
         void viewTasks(const string& categoryFilter = "", bool showCompleted =false, bool importantOnly = false) const{
             cout << endl << "---- Task List ----" << endl;
             int count = 0; // Count for the matching tasks
-            for(auto task : tasks){
+            for(const auto& task : tasks){
                 // The filter condition for the tasks
-                bool categoryMatch = categoryFilter.empty()||task->get_category() == categoryFilter; //If the category is empty or the task category is the same as the filter category
-                bool completedMatch = showCompleted || !task->is_completed(); //Show already completed or tasks isn't completed
+                bool categoryMatch = categoryFilter.empty()|| (task->get_category() == categoryFilter); //If the category is empty or the task category is the same as the filter category
+                bool completedMatch = showCompleted || !(task->is_completed()); //Show already completed or tasks isn't completed
                 bool importantMatch = !importantOnly || task->isImportance(); //Show donb't select important task or is important task
                 if(categoryMatch && completedMatch && importantMatch){
                     cout << count+1 << ". ";
@@ -119,10 +119,6 @@ class ToDoList{
             if(tasks[index]->isRecurring()){ //If the tasks we have completed is recurring task
                 tasks[index]->markNectOccurance(); // Mark the next occurrence of the task
             }
-            else{
-                tasks.erase(tasks.begin()+index); // Remove the task from the list
-            }
-
        }
        // Function to edit a task in the list
         /*Procedure to implement this function
