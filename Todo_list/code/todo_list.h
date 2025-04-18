@@ -71,9 +71,10 @@ class ToDoList{
         /*
         1. We can determine what kind of task we want to display.ADJ_FREQUENCY
         2. We can display 
-            a. Base on the category
-            b. Base on completed or not
-            c. Only show the important tasks
+            a. All the tasks
+            b. Base on the category
+            c. Base on completed or not
+            d. Only show the important tasks
         3. Based on the above conditions, we can display the tasks, and the input parameters are the condition
         4. The input parameter means
             a. categoryFilter: the category we want to display, if it is empty, we display all the tasks
