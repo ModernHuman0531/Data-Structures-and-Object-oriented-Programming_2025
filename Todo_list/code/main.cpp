@@ -173,7 +173,6 @@ void editTask(ToDoList& todolist){
     getline(cin, newName);
 
     cout << "Enter new category: ";
-    cin.ignore();
     getline(cin, newCategory);
 
     try{
