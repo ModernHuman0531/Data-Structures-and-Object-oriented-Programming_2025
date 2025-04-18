@@ -42,7 +42,6 @@ void addTask(ToDoList& todolist){
     getline(cin, name);// Read the whole line until meet '\n'
 
     cout << "Enter category: ";
-    cin.ignore();
     getline(cin, category);
 
     cout << endl << "Select task type: " << endl;
@@ -90,10 +89,10 @@ void addTask(ToDoList& todolist){
             cout << "Enter recurrence in days: ";
             cin >> recurrenceDays;
 
-            cout << "Enter start date (MM/DD/YYYY): ";
+            //cout << "Enter start date (MM/DD/YYYY): ";
             tm startDate = getDateInput();
 
-            task = new RecurringTask(name, category, desciription, startDate, recurrenceDays);
+            task = new RecurringTask(name, category,  startDate, desciription, recurrenceDays);
         }
         else{
             cout << "Invalid task type." << endl;

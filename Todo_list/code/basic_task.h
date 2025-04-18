@@ -125,7 +125,7 @@ class ImportantTask : public Basic_task{
         bool isImportance() const override {return true;}// To indicate if the task is important task or not
         // Display function for ImportantTask
         void display() const override{
-            cout << "[Important( " << get_priority() << ")]" << get_name() << "| Category: " << get_category();
+            cout << "[Important(" << get_priority() << ")]" << get_name() << "| Category: " << get_category();
             if(!get_description().empty()){// If the description is not empty, display it
                 cout << "| Description: " << get_description();
             }
@@ -147,7 +147,7 @@ class RecurringTask : public Normal_task{
         tm* nextOccurance; // Date of the next occurrence
     public:
         // Constructor, we need to allocate the memory for the pointers
-        RecurringTask(const string& name, const string& category, const string& description = "", const tm& startDate, int recurrenceDays = 1) :Normal_task(name, category, description, startDate), recurrenceDays(new int(recurrenceDays)), nextOccurance(new tm(startDate)) {}
+        RecurringTask(const string& name, const string& category, const tm& startDate, const string& description = "",  int recurrenceDays = 1) :Normal_task(name, category, description, startDate), recurrenceDays(new int(recurrenceDays)), nextOccurance(new tm(startDate)) {}
         // Destructor, we need to free the memory allocated for the pointers
         ~RecurringTask(){
             delete recurrenceDays;
@@ -178,4 +178,4 @@ class RecurringTask : public Normal_task{
         }
 };
 
-#endif // BASIC_TASK_H
+#endif
