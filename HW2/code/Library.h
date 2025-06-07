@@ -97,6 +97,10 @@ class Library {
             if(book == nullptr){
                 throw runtime_error("Invalid book.");
             }
+            // Check if the copy number of the book is less than 0
+            if(book -> getCopyNumber() < 0){
+                throw runtime_error("Invalid copy number.");
+            }
             else{
                 // Push the book into the library
                 lib.push_back(book);
@@ -110,6 +114,13 @@ class Library {
             // Call the merge sort function to sort the books by title
             mergeSort(lib, 0, lib.size() - 1);
         }
+
+        // Function to sort the borrowed books in the library in lexicographical order by the book's title from smallest to largest
+        void sortBorrowedBooksByTitle() {
+            if(borrowedBooks.size() <= 1){return;}
+            mergeSort(borrowedBooks, 0, borrowedBooks.size() - 1);
+        }
+
         /* Function to search book by name or genre or publish_year
         1.We can search book by name, genre or publish year
         2. If the book is found, display the book's informtion
@@ -314,6 +325,27 @@ class Library {
             for(const auto& book : lib){
                 book -> display();
                 cout << endl;
+            }
+        }
+
+        void ListBorrowedBooks() const{
+            // Check if there's any borrowed books
+            if(borrowedBooks.empty()){
+                cout << "No books have been borrowed." << endl;
+                return;
+            }
+
+            cout << "Borrowed Books: " << endl;
+            for(const auto& book : borrowedBooks){
+                book -> display();
+                cout << "Borrowed on: "
+                    << (book -> getBorrowDate().tm_mon + 1) << "/"
+                    << (book->getBorrowDate().tm_mday) << "/"
+                    << (book -> getBorrowDate().tm_year + 1900) << endl;
+                cout << "Due date: "
+                    << (book -> getBorrowDate().tm_mon + 1) << "/"
+                    << (book -> getDueDate().tm_mday) << "/"
+                    << (book -> getDueDate().tm_year + 1900) << endl;
             }
         }
 
