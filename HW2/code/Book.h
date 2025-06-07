@@ -19,8 +19,8 @@ Book contents:
 */
 class Book{
     protected:
-        int pub_year;
         int copy_number;
+        string pub_year;
         string book_name;
         string author;
         string genre;
@@ -29,15 +29,15 @@ class Book{
         tm due_date;
     public:
         // Constructor
-        Book(int year, int copies,const string& name,  const string& authorName, const string& bookGenre, const string& bookOverview):
-            pub_year{year}, copy_number{copies}, book_name{name},author{authorName}, genre{bookGenre}, overview{bookOverview}{}
+        Book(int copies, const string& year, const string& name,  const string& authorName, const string& bookGenre, const string& bookOverview):
+            copy_number{copies}, pub_year{year}, book_name{name},author{authorName}, genre{bookGenre}, overview{bookOverview}{}
         
         // Destructor
         ~Book(){}
 
         // Getters
-        int getPubYear() const{return pub_year;}
         int getCopyNumber() const{return copy_number;}
+        string getPubYear() const{return pub_year;}
         string getBookName() const{return book_name;}
         string getAuthor() const{return author;}
         string getGenre() const{return genre;}
@@ -46,8 +46,8 @@ class Book{
         const tm getDueDate() const{return due_date;}
 
         // Setters
-        void setPubYear(int year) {pub_year = year;}
         void setCopyNumber(int copies) {copy_number = copies;}
+        void setPubYear(string year) {pub_year = year;}
         void setBookName(const string& name) {book_name = name;}
         void setAuthor(const string& authorName) {author = authorName;}
         void setGenre(const string& bookGenre) {genre = bookGenre;}
