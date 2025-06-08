@@ -11,7 +11,7 @@
 using namespace std;
 
 void displayMenu(){
-    cout << "Library Management System" << endl;
+    cout << "\nLibrary Management System" << endl;
     cout << "1. Add a new book" << endl;
     cout << "2. Search for a book" << endl;
     cout << "3. Check out a book" << endl;
@@ -30,13 +30,10 @@ void addBook(Library& library){
     cin.ignore();
     getline(cin, bookName); // Use getline for the input to allow spaces in the book title
     cout << "Enter author: ";
-    cin.ignore();
     getline(cin, author); // Use getline for the input to allow spaces in the author's name
     cout << "Enter genre: ";
-    cin.ignore();
     getline(cin, genre); // Use getline for the input to allow spaces in the genre
     cout << "Enter overview: ";
-    cin.ignore();
     getline(cin, overview); // Use getline for the input to allow spaces in the overview
     cout << "Enter publication year: ";
     cin >> pubYear;
@@ -97,7 +94,8 @@ void checkOutBook(Library& library){
     string bookName;
     cout << "--------------------- Check Out Book ---------------------" << endl;
     cout << "Enter the title of the book to check out: ";
-    cin >> bookName;
+    cin.ignore();
+    getline(cin, bookName); // Use getline for the input to allow spaces in the book title
     try{
         library.borrowBook(bookName);
     }
@@ -112,7 +110,8 @@ void returnBook(Library& library){
     string bookName;
     cout << "--------------------- Return Book ---------------------" << endl;
     cout << "Enter the title of the book to return: ";
-    cin >> bookName;
+    cin.ignore();
+    getline(cin, bookName); // Use getline for the input to allow spaces in the book title
     try{
         library.returnBook(bookName);
     }
@@ -174,7 +173,7 @@ int main(){
                 break;
             
             case 7:
-                cout << "Exit library management system. Thank you!!!";
+                cout << "Exit library management system. Thank you!!!" << endl;
                 break;
         }
     }
