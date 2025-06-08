@@ -1,5 +1,5 @@
+#ifndef BOOK_H
 #define BOOK_H
-#ifdef BOOK_H
 
 // Import necessary libraries
 #include <iostream>
@@ -42,8 +42,8 @@ class Book{
         string getAuthor() const{return author;}
         string getGenre() const{return genre;}
         string getOverview() const{return overview;}
-        const tm getBorrowDate() const{return borrow_date;}
-        const tm getDueDate() const{return due_date;}
+        tm getBorrowDate() const{return borrow_date;}
+        tm getDueDate() const{return due_date;}
 
         // Setters
         void setCopyNumber(int copies) {copy_number = copies;}

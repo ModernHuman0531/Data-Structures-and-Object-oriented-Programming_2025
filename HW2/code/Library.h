@@ -1,6 +1,5 @@
+#ifndef LIBRARY_H
 #define LIBRARY_H
-#ifdef LIBRARY_H
-
 // Import necessary libraries
 #include "Book.h"
 #include <iostream>
