@@ -37,13 +37,16 @@ Programming
 2020
 
 3
-Python
+The C++ Programming Language
 
 3
-Python
+The C++ Programming Language
+
+3
+Python Crash Course
 
 4
-Python
+The C++ Programming Language
 
 5
 
