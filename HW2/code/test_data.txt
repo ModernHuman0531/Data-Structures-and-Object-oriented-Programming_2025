@@ -1,0 +1,52 @@
+1
+The C++ Programming Language
+Bjarne Stroustrup
+Programming
+A classic C++ reference book.
+2013
+2
+
+1
+Python Crash Course
+Eric Matthes
+Programming
+A beginner-friendly Python guide.
+2020
+1
+
+1
+Clean Code
+Robert C. Martin
+Software Engineering
+A handbook of agile software craftsmanship.
+2008
+1
+
+5
+
+2
+1
+Clean Code
+
+2
+2
+Programming
+
+2
+3
+2020
+
+3
+Python
+
+3
+Python
+
+4
+Python
+
+5
+
+6
+
+7
